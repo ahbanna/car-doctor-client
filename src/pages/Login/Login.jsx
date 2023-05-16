@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import loginImg from "../../assets/images/login/login.svg";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
+  const { signIn } = useContext(AuthContext);
+
   const handleLogin = (event) => {
     event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+    signIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => console.log(error));
   };
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -21,8 +34,9 @@ const Login = () => {
                   <span className="label-text">Email</span>
                 </label>
                 <input
-                  type="text" name='email'
-                  placeholder="email" 
+                  type="text"
+                  name="email"
+                  placeholder="email"
                   className="input input-bordered"
                 />
               </div>
@@ -31,7 +45,8 @@ const Login = () => {
                   <span className="label-text">Password</span>
                 </label>
                 <input
-                  type="text" name='password'
+                  type="text"
+                  name="password"
                   placeholder="password"
                   className="input input-bordered"
                 />
