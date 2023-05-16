@@ -4,7 +4,7 @@ import person from "../../../assets/images/about_us/person.jpg";
 
 const About = () => {
   return (
-    <div className="hero min-h-screen bg-base-200">
+    <div className="hero py-24 bg-base-200">
       <div className="hero-content flex-col lg:flex-row">
         <div className="lg:w-1/2 relative">
           <img src={person} className="w-4/5 rounded-lg shadow-2xl" />
